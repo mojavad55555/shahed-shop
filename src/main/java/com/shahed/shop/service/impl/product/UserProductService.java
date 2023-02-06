@@ -26,20 +26,19 @@ public class UserProductService implements IUserProductService {
 
     @Override
     public List<factor> findByUserAccount(Long userId) {
-        return iUserProductRepository.findByUserAccount(userId) ;
+        return iUserProductRepository.findByUserAccount(userId);
     }
 
     @Override
     @Transactional
     public Long save(factor factor) throws Exception {
-        Long id =iUserProductRepository.save(factor).getId();
-        List<Product> productId= factor.getProducts();
-        for (Product product :productId)
-        {
-            if(product.getAmount() == 0 ){
+        Long id = iUserProductRepository.save(factor).getId();
+        List<Product> productId = factor.getProducts();
+        for (Product product : productId) {
+            if (product.getAmount() == 0) {
                 throw new Exception("موجودی ناکافی");
             }
-            product.setAmount(product.getAmount()-1);
+            product.setAmount(product.getAmount() - 1);
             iProductService.save(product);
         }
         return id;

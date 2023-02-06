@@ -53,6 +53,6 @@ public class UserAccountService implements IUserAccountService {
 
     @Override
     public List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName) {
-        return iUserAccountRepository.findByLastNameAndFirstNameEquals(lastName,firstName);
+        return iUserAccountRepository.findByLastNameAndFirstNameEquals(lastName, firstName);
     }
 }

@@ -11,5 +11,5 @@ public interface IUserProductService {
 
     List<factor> findByUserAccount(Long userId);
 
-    Long save (factor factor) throws Exception;
+    Long save(factor factor) throws Exception;
 }

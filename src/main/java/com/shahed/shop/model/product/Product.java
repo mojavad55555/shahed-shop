@@ -36,10 +36,10 @@ public class Product {
     @Column(name = "price")
     private String price;
 
-    @Column(name = "description",length = 2000)
+    @Column(name = "description", length = 2000)
     private String description;
 
     @OneToOne
-    @JoinColumn(name="categories_id")
+    @JoinColumn(name = "categories_id")
     private Categories categories;
 }

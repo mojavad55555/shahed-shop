@@ -36,7 +36,7 @@ public class UserAccount {
     @Column(name = "phone_Number")
     private String phoneNumber;
 
-    @Column(name = "address",length = 2000)
+    @Column(name = "address", length = 2000)
     private String address;
 
     @Column(name = "sex")

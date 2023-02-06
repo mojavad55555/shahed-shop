@@ -21,5 +21,5 @@ public interface IUserAccountService {
 
     List<UserAccount> findByLastNameEquals(String lastName);
 
-    List<UserAccount> findByLastNameAndFirstNameEquals(String firstName,String lastName);
+    List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName);
 }
