@@ -24,13 +24,13 @@ public class CategoriesController extends BaseController {
         this.mapper = mapper;
     }
 
-    @PostMapping
+    @PostMapping(value = "/admin")
     @Operation(tags = "categories", description = "ثبت دسته بندی", summary = "ثبت دسته بندی")
     public ServiceResult<Long> save(@RequestBody CategoriesDto categoriesDto) {
         return iCategoriesService.save(mapper.map(categoriesDto, Categories.class));
     }
 
-    @PutMapping
+    @PutMapping(value = "/admin")
     @Operation(tags = "categories", description = "ویرایش دسته بندی", summary = "ویرایش دسته بندی")
     public ServiceResult<Long> save(@RequestBody Categories categories) {
         return iCategoriesService.save(categories);

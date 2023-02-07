@@ -36,32 +36,32 @@ public class UserAccountController extends BaseController {
         return iUserAccountService.login(firstName,lastName);
     }
 
-    @GetMapping(value = "/id")
+    @GetMapping(value = "/id/admin")
     @Operation(tags = "user-account", summary = "لود یوزر با شناسه")
     public UserAccount findById(Long id) {
         return iUserAccountService.findByIdEquals(id);
     }
 
 
-    @GetMapping(value = "/firstName")
+    @GetMapping(value = "/firstName/admin")
     @Operation(tags = "user-account", summary = "لود یوزر با نام")
     public ServiceResult<UserAccount> findByFirstName(String firstName) {
         return iUserAccountService.findByFirstNameEquals(firstName);
     }
 
-    @GetMapping(value = "/lastName")
+    @GetMapping(value = "/lastName/admin")
     @Operation(tags = "user-account", summary = "لود یوزر با نام خانوادگی")
     public ServiceResult<UserAccount> findByLastName(String lastname) {
         return iUserAccountService.findByLastNameEquals(lastname);
     }
 
-    @GetMapping(value = "/fullName")
+    @GetMapping(value = "/fullName/admin")
     @Operation(tags = "user-account", summary = "لود یوزر با نام و نام خانوادگی")
     public ServiceResult<UserAccount> findByLastNameAndFirstName(String firstName, String lastName) {
         return iUserAccountService.findByLastNameAndFirstNameEquals(firstName,lastName);
     }
 
-    @GetMapping
+    @GetMapping(value = "/admin")
     @Operation(tags = "user-account", summary = "لود یوزرها")
     public ServiceResult<UserAccount> getAll() {
         return iUserAccountService.getAll();

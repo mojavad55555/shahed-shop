@@ -21,13 +21,13 @@ public class ProductController extends BaseController {
         this.iProductService = iProductService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/admin")
     @Operation(tags = "product", description = "ثبت محصول", summary = "ثبت محصول")
     public ServiceResult<Long> save(@RequestBody ProductDto product) {
         return iProductService.saveDto(product);
     }
 
-    @PutMapping
+    @PutMapping(value = "/admin")
     @Operation(tags = "product", description = "ویرایش محصول", summary = "ویرایش محصول")
     public ServiceResult<Long> save(@RequestBody Product product) {
         return iProductService.save(product);
