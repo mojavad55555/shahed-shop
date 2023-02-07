@@ -27,6 +27,11 @@ public class CategoriesService implements ICategoriesService {
     }
 
     @Override
+    public Categories findById(Long id) {
+        return iCategoriesRepository.getById(id);
+    }
+
+    @Override
     @Transactional
     public Long save(Categories categories) {
         return iCategoriesRepository.save(categories).getId();

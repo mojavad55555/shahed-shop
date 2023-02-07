@@ -24,6 +24,9 @@ public class UserAccount {
     @Column(name = "created_date_time")
     private Timestamp createdDate;
 
+    @Column(name = "userName",unique = true)
+    private String userName;
+
     @Column(name = "password")
     private String password;
 
@@ -44,6 +47,5 @@ public class UserAccount {
 
     @Column(name = "age")
     private Integer age;
-
 
 }

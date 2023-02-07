@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IUserAccountService {
 
-    Long save(UserAccount userAccount);
+    Long save(UserAccount userAccount) throws Exception;
 
     List<UserAccount> getAll();
 
@@ -22,4 +22,13 @@ public interface IUserAccountService {
     List<UserAccount> findByLastNameEquals(String lastName);
 
     List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName);
+
+    boolean existsByUserName(String userName);
+
+    boolean existsByUserNameAndPassword(String userName,String password);
+
+    UserAccount findByUserNameAndPassword(String userName,String password);
+
+    UserAccount login(String userName,String password);
+
 }

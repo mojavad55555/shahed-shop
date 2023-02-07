@@ -11,6 +11,8 @@ public interface ICategoriesService {
 
     Categories findByCode(String code);
 
+    Categories findById(Long id);
+
     Long save(Categories categories);
 
     List<Categories>getAll();

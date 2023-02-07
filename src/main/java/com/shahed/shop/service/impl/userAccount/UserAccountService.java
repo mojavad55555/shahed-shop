@@ -6,6 +6,7 @@ import com.shahed.shop.service.userAccount.IUserAccountService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -22,7 +23,11 @@ public class UserAccountService implements IUserAccountService {
 
     @Override
     @Transactional
-    public Long save(UserAccount userAccount) {
+    public Long save(UserAccount userAccount) throws Exception {
+        if(this.existsByUserName(userAccount.getUserName())){
+            throw new Exception("یوزر تکراری!");
+        }
+        userAccount.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return iUserAccountRepository.save(userAccount).getId();
     }
 
@@ -54,5 +59,29 @@ public class UserAccountService implements IUserAccountService {
     @Override
     public List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName) {
         return iUserAccountRepository.findByLastNameAndFirstNameEquals(lastName, firstName);
+    }
+
+    @Override
+    public boolean existsByUserName(String userName) {
+        return iUserAccountRepository.existsByUserName(userName);
+    }
+
+    @Override
+    public boolean existsByUserNameAndPassword(String userName, String password) {
+        return iUserAccountRepository.existsByUserNameAndPassword(userName, password);
+    }
+
+    @Override
+    public UserAccount findByUserNameAndPassword(String userName, String password) {
+        return iUserAccountRepository.findByUserNameAndPassword(userName, password);
+    }
+
+    @Override
+    public UserAccount login(String userName, String password) {
+        if (this.existsByUserNameAndPassword(userName, password)) {
+            return this.findByUserNameAndPassword(userName, password);
+        } else {
+            return null;
+        }
     }
 }

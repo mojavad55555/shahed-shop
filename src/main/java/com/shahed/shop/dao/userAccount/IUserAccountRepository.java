@@ -20,4 +20,10 @@ public interface IUserAccountRepository extends JpaRepository<UserAccount, Long>
 
     List<UserAccount> findByLastNameAndFirstNameEquals(String firstName,String lastName);
 
+    boolean existsByUserName(String userName);
+
+    boolean existsByUserNameAndPassword(String userName,String password);
+
+    UserAccount findByUserNameAndPassword(String userName,String password);
+
 }

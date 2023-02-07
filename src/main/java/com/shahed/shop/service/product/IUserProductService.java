@@ -1,6 +1,7 @@
 package com.shahed.shop.service.product;
 
-import com.shahed.shop.model.product.factor;
+import com.shahed.shop.dto.userProduct.UserProductDto;
+import com.shahed.shop.model.product.UserProduct;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface IUserProductService {
 
-    List<factor> findByUserAccount(Long userId);
+    List<UserProduct> findByUserAccount(Long userId);
 
-    Long save(factor factor) throws Exception;
+    Long save(UserProductDto userProductDto) throws Exception;
 }

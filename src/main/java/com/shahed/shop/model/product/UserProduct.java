@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class factor {
+public class UserProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_user_product")
@@ -29,4 +30,7 @@ public class factor {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
+
+    @Column(name = "created_date_time")
+    private Timestamp createdDate;
 }
