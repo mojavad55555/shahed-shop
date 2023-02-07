@@ -1,5 +1,6 @@
 package com.shahed.shop.controller.product;
 
+import com.shahed.shop.controller.common.BaseController;
 import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.dto.product.UserFavoriteProductDto;
 import com.shahed.shop.model.product.UserFavoriteProduct;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/user-favorite-product", produces = "application/json;charset=UTF-8")
-public class UserFavoriteProductController {
+public class UserFavoriteProductController extends BaseController {
 
     private final IUserFavoriteProductService iUserFavoriteProductService;
 

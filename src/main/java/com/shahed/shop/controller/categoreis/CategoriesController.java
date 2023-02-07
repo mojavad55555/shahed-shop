@@ -1,5 +1,6 @@
 package com.shahed.shop.controller.categoreis;
 
+import com.shahed.shop.controller.common.BaseController;
 import com.shahed.shop.dto.categories.CategoriesDto;
 import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.model.categories.Categories;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/api/categories", produces = "application/json;charset=UTF-8")
-public class CategoriesController {
+public class CategoriesController extends BaseController {
 
     private final ICategoriesService iCategoriesService;
     private final Mapper mapper;

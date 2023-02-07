@@ -1,5 +1,6 @@
 package com.shahed.shop.controller.userAccount;
 
+import com.shahed.shop.controller.common.BaseController;
 import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.dto.userAccount.UserAccountDto;
 import com.shahed.shop.model.userAccount.UserAccount;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/api/user-account", produces = "application/json;charset=UTF-8")
-public class UserAccountController {
+public class UserAccountController extends BaseController {
 
     private final IUserAccountService iUserAccountService;
     private final Mapper mapper;

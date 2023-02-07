@@ -1,5 +1,6 @@
 package com.shahed.shop.controller.product;
 
+import com.shahed.shop.controller.common.BaseController;
 import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.dto.product.ProductDto;
 import com.shahed.shop.model.product.Product;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/api/product", produces = "application/json;charset=UTF-8")
-public class ProductController {
+public class ProductController extends BaseController {
 
     private final IProductService iProductService;
 
