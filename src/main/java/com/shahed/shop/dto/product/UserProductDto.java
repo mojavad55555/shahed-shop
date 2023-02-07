@@ -1,4 +1,4 @@
-package com.shahed.shop.dto.userProduct;
+package com.shahed.shop.dto.product;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,8 @@
 package com.shahed.shop.service.impl.product;
 
 import com.shahed.shop.dao.product.IProductRepository;
+import com.shahed.shop.dto.common.ServiceResult;
+import com.shahed.shop.dto.common.ServiceResultBuilder;
 import com.shahed.shop.dto.product.ProductDto;
 import com.shahed.shop.model.categories.Categories;
 import com.shahed.shop.model.product.Product;
@@ -10,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * @author m.mohabbati on 2/5/2023
@@ -29,41 +29,42 @@ public class ProductService implements IProductService {
 
     @Override
     @Transactional
-    public Long saveDto(ProductDto entity) {
-       Categories categories = iCategoriesService.findById(entity.getCategories());
-        Product product=new Product();
+    public ServiceResult<Long> saveDto(ProductDto entity) {
+        Categories categories = iCategoriesService.findById(entity.getCategories());
+        Product product = new Product();
         product.setCategories(categories);
         product.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         product.setAmount(entity.getAmount());
         product.setDescription(entity.getDescription());
         product.setPrice(entity.getPrice());
         product.setTitle(entity.getTitle());
-        return iProductRepository.save(product).getId();
+        return new ServiceResultBuilder<Long>().setSingleResult(iProductRepository.save(product).getId()).setMessage("Status : ok").build();
     }
 
     @Override
-    public Long save(Product product) {
-        return iProductRepository.save(product).getId();
+    public ServiceResult<Long> save(Product product) {
+        return new ServiceResultBuilder<Long>().setSingleResult(iProductRepository.save(product).getId()).setMessage("Status : ok").build();
     }
 
     @Override
-    public List<Product> getAll() {
-        return iProductRepository.findAll();
+    public ServiceResult<Product> getAll() {
+        return new ServiceResultBuilder<Product>().setResult(iProductRepository.findAll()).setMessage("Status : ok").build();
     }
 
     @Override
-    public Product findById(Long id) {
-        return iProductRepository.getById(id);
+    public ServiceResult<Product> findById(Long id) {
+        return new ServiceResultBuilder<Product>().setSingleResult(iProductRepository.findByIdEquals(id)).setMessage("Status : ok").build();
     }
 
 
     @Override
-    public List<Product> findByCategories(Long categories) {
-        return iProductRepository.findByCategories(categories);
+    public ServiceResult<Product> findByCategories(Long categories) {
+        return new ServiceResultBuilder<Product>().setResult(iProductRepository.findByCategories(categories)).setMessage("Status : ok").build();
+
     }
 
     @Override
-    public List<Product> findByTitle(String title) {
-        return iProductRepository.findByTitleLike(title);
+    public ServiceResult<Product> findByTitle(String title) {
+        return new ServiceResultBuilder<Product>().setResult(iProductRepository.findByTitleLike(title)).setMessage("Status : ok").build();
     }
 }

@@ -1,13 +1,12 @@
 package com.shahed.shop.controller.categoreis;
 
 import com.shahed.shop.dto.categories.CategoriesDto;
+import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.model.categories.Categories;
 import com.shahed.shop.service.categories.ICategoriesService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.dozer.Mapper;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author m.mohabbati on 2/6/2023
@@ -26,8 +25,14 @@ public class CategoriesController {
 
     @PostMapping
     @Operation(tags = "categories", description = "ثبت دسته بندی", summary = "ثبت دسته بندی")
-    public Long save(@RequestBody CategoriesDto categoriesDto) {
+    public ServiceResult<Long> save(@RequestBody CategoriesDto categoriesDto) {
         return iCategoriesService.save(mapper.map(categoriesDto, Categories.class));
+    }
+
+    @PutMapping
+    @Operation(tags = "categories", description = "ویرایش دسته بندی", summary = "ویرایش دسته بندی")
+    public ServiceResult<Long> save(@RequestBody Categories categories) {
+        return iCategoriesService.save(categories);
     }
 
     @GetMapping(value = "/code")
@@ -38,7 +43,7 @@ public class CategoriesController {
 
     @GetMapping
     @Operation(tags = "categories", summary = "لود دسته بندی ها")
-    public List<Categories> getAll() {
+    public ServiceResult<Categories> getAll() {
         return iCategoriesService.getAll();
     }
 }

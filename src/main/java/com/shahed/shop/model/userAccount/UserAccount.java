@@ -18,13 +18,13 @@ import java.sql.Timestamp;
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_user_account")
-    @SequenceGenerator(name = "seq_user_account", sequenceName = "seq_gen_user_account", allocationSize = 1)
+    @SequenceGenerator(name = "seq_user_account", sequenceName = "seq_gen_user_account", allocationSize = 5)
     private Long id;
 
     @Column(name = "created_date_time")
     private Timestamp createdDate;
 
-    @Column(name = "userName",unique = true)
+    @Column(name = "userName", unique = true)
     private String userName;
 
     @Column(name = "password")

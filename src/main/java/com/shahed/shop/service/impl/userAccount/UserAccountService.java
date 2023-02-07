@@ -1,6 +1,8 @@
 package com.shahed.shop.service.impl.userAccount;
 
 import com.shahed.shop.dao.userAccount.IUserAccountRepository;
+import com.shahed.shop.dto.common.ServiceResult;
+import com.shahed.shop.dto.common.ServiceResultBuilder;
 import com.shahed.shop.model.userAccount.UserAccount;
 import com.shahed.shop.service.userAccount.IUserAccountService;
 import org.springframework.stereotype.Service;
@@ -23,17 +25,17 @@ public class UserAccountService implements IUserAccountService {
 
     @Override
     @Transactional
-    public Long save(UserAccount userAccount) throws Exception {
-        if(this.existsByUserName(userAccount.getUserName())){
+    public ServiceResult<Long> save(UserAccount userAccount) throws Exception {
+        if (this.existsByUserName(userAccount.getUserName())) {
             throw new Exception("یوزر تکراری!");
         }
         userAccount.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        return iUserAccountRepository.save(userAccount).getId();
+        return new ServiceResultBuilder<Long>().setSingleResult(iUserAccountRepository.save(userAccount).getId()).setMessage("Status : ok").build();
     }
 
     @Override
-    public List<UserAccount> getAll() {
-        return iUserAccountRepository.findAll();
+    public ServiceResult<UserAccount> getAll() {
+        return new ServiceResultBuilder<UserAccount>().setResult(iUserAccountRepository.findAll()).setMessage("Status : ok").build();
     }
 
     @Override
@@ -47,18 +49,19 @@ public class UserAccountService implements IUserAccountService {
     }
 
     @Override
-    public List<UserAccount> findByFirstNameEquals(String firstName) {
-        return iUserAccountRepository.findByFirstNameEquals(firstName);
+    public ServiceResult<UserAccount> findByFirstNameEquals(String firstName) {
+        return new ServiceResultBuilder<UserAccount>().setResult(iUserAccountRepository.findByFirstNameEquals(firstName)).setMessage("Status : ok").build();
     }
 
     @Override
-    public List<UserAccount> findByLastNameEquals(String lastName) {
-        return iUserAccountRepository.findByLastNameEquals(lastName);
+    public ServiceResult<UserAccount> findByLastNameEquals(String lastName) {
+        return new ServiceResultBuilder<UserAccount>().setResult(iUserAccountRepository.findByLastNameEquals(lastName)).setMessage("Status : ok").build();
     }
 
     @Override
-    public List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName) {
-        return iUserAccountRepository.findByLastNameAndFirstNameEquals(lastName, firstName);
+    public ServiceResult<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName) {
+        return new ServiceResultBuilder<UserAccount>().setResult(iUserAccountRepository.findByLastNameAndFirstNameEquals(lastName, firstName)).setMessage("Status : ok").build();
+
     }
 
     @Override
@@ -77,11 +80,12 @@ public class UserAccountService implements IUserAccountService {
     }
 
     @Override
-    public UserAccount login(String userName, String password) {
+    public ServiceResult<UserAccount> login(String userName, String password) {
         if (this.existsByUserNameAndPassword(userName, password)) {
-            return this.findByUserNameAndPassword(userName, password);
+            return new ServiceResultBuilder<UserAccount>().setSingleResult(this.findByUserNameAndPassword(userName, password)).setMessage("Status : ok").build();
+
         } else {
-            return null;
+            return new ServiceResultBuilder<UserAccount>().setSingleResult(null).setMessage("status : unSuccess").build();
         }
     }
 }

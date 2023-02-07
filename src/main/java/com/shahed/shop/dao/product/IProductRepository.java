@@ -1,6 +1,5 @@
 package com.shahed.shop.dao.product;
 
-import com.shahed.shop.model.categories.Categories;
 import com.shahed.shop.model.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +15,6 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByCategories(Long categories);
 
     List<Product> findByTitleLike(String title);
+
+    Product findByIdEquals(Long id);
 }

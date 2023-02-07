@@ -17,12 +17,12 @@ import javax.persistence.*;
 public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_categories")
-    @SequenceGenerator(name = "seq_gen_categories", sequenceName = "seq_gen_categories", allocationSize = 1)
+    @SequenceGenerator(name = "seq_gen_categories", sequenceName = "seq_gen_categories", allocationSize = 5, initialValue = 200)
     private Long id;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "code")
+    @Column(name = "code",unique =true)
     private String code;
 }

@@ -10,18 +10,17 @@ import java.sql.Timestamp;
 import java.util.List;
 
 /**
- * @author m.mohabbati on 2/5/2023
+ * @author m.mohabbati on 2/7/2023
  */
 @Entity
-@Table(name = "user_product")
+@Table(name = "user_fav_product")
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserProduct {
-
+public class UserFavoriteProduct {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_user_product")
-    @SequenceGenerator(name = "seq_gen_user_product", sequenceName = "seq_gen_user_product", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_user_fav_product")
+    @SequenceGenerator(name = "seq_gen_user_fav_product", sequenceName = "seq_gen_user_fav_product", allocationSize = 1)
     private Long id;
 
     @ManyToOne

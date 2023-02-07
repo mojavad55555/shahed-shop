@@ -1,5 +1,6 @@
 package com.shahed.shop.service.userAccount;
 
+import com.shahed.shop.dto.common.ServiceResult;
 import com.shahed.shop.model.userAccount.UserAccount;
 
 import java.util.List;
@@ -9,19 +10,19 @@ import java.util.List;
  */
 public interface IUserAccountService {
 
-    Long save(UserAccount userAccount) throws Exception;
+    ServiceResult<Long> save(UserAccount userAccount) throws Exception;
 
-    List<UserAccount> getAll();
+    ServiceResult<UserAccount> getAll();
 
     UserAccount findByIdEquals(Long id);
 
     List<UserAccount> findBySexEquals(boolean sex);
 
-    List<UserAccount> findByFirstNameEquals(String firstName);
+    ServiceResult<UserAccount> findByFirstNameEquals(String firstName);
 
-    List<UserAccount> findByLastNameEquals(String lastName);
+    ServiceResult<UserAccount> findByLastNameEquals(String lastName);
 
-    List<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName);
+    ServiceResult<UserAccount> findByLastNameAndFirstNameEquals(String firstName, String lastName);
 
     boolean existsByUserName(String userName);
 
@@ -29,6 +30,6 @@ public interface IUserAccountService {
 
     UserAccount findByUserNameAndPassword(String userName,String password);
 
-    UserAccount login(String userName,String password);
+    ServiceResult<UserAccount> login(String userName,String password);
 
 }
